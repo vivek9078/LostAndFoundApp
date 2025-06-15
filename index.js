@@ -3,6 +3,7 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.json());
@@ -10,10 +11,10 @@ app.use(cors());
 
 // DB Connection
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "lostfounddb"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
 });
 
 db.connect((err) => {
@@ -22,11 +23,12 @@ db.connect((err) => {
 });
 
 // Email Transporter (Use App Password)
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "lostandfound859@gmail.com",
-    pass: "mgrp rjfe qeix ofzg"
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
   }
 });
 
@@ -49,7 +51,7 @@ app.post('/api/found', (req, res) => {
 
     const verifyLink = `http://localhost:3000/api/verify/${token}`;
     transporter.sendMail({
-      from: 'lostandfound859@gmail.com',
+      from: 'process.env.EMAIL_USER',
       to: email,
       subject: 'Verify your found item',
       html: `<p>Please verify your found item by clicking <a href="${verifyLink}">here</a>.</p>`
