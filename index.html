@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lost & Found | Landing Page</title>
+
+  <!-- Font Awesome CDN for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Link to your CSS file -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container" role="main" aria-label="Lost and Found System">
+    <h1><i class="fas fa-compass"></i> Lost & Found System</h1>
+
+    <div class="tabs" role="tablist" aria-label="Select form tab">
+      <button id="found-tab" class="tab active" role="tab" aria-selected="true" aria-controls="found-form" tabindex="0">
+        <i class="fas fa-box-open"></i> I Found an Item
+      </button>
+      <button id="lost-tab" class="tab" role="tab" aria-selected="false" aria-controls="lost-form" tabindex="-1">
+        <i class="fas fa-search"></i> I Lost an Item
+      </button>
+    </div>
+
+    <section id="found-form" class="form-section" role="tabpanel" aria-labelledby="found-tab">
+      <h2><i class="fas fa-box"></i> Found Item Details</h2>
+      <form id="foundItemForm" autocomplete="off" novalidate>
+        <input type="email" id="foundEmail" placeholder="Your Email" required aria-required="true" />
+        <input type="text" id="foundName" placeholder="Item Name" required aria-required="true" />
+        <input type="text" id="foundColor" placeholder="Color" required aria-required="true" />
+        <input type="text" id="foundBrand" placeholder="Brand (Optional)" />
+        <input type="text" id="foundLocation" placeholder="Found Location" required aria-required="true" />
+        <button type="submit" aria-label="Register Found Item">Register Found Item</button>
+      </form>
+    </section>
+
+    <section id="lost-form" class="form-section hidden" role="tabpanel" aria-labelledby="lost-tab" tabindex="0" aria-hidden="true">
+      <h2><i class="fas fa-search-minus"></i> Search for Lost Item</h2>
+      <form id="lostItemForm" autocomplete="off" novalidate>
+        <input type="email" id="lostEmail" placeholder="Your Email" required aria-required="true" />
+        <input type="text" id="lostName" placeholder="Item Name" required aria-required="true" />
+        <input type="text" id="lostColor" placeholder="Color (Optional)" />
+        <input type="text" id="lostBrand" placeholder="Brand (Optional)" />
+        <button type="submit" aria-label="Search Lost Items">Search</button>
+      </form>
+      <div id="searchResults" aria-live="polite"></div>
+    </section>
+  </div>
+<head>
+<button id="modeBtn">🌙</button>
+
+  <!-- Link to your JavaScript file -->
+  <script src="script.js"></script>
+
+</body>
+</html>
